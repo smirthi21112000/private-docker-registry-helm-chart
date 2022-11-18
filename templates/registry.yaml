@@ -58,9 +58,9 @@ spec:
       volumes:
       - name: auth
         hostPath:
-          path: ~/docker-registry/auth
+          path: {{ .Values.registry.authpath }}
       - name: data
         hostPath:
-          path: ~/docker-registry/auth
+          path: {{ .Values.registry.datapath }}
 
 
