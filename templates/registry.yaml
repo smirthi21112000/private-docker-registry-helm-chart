@@ -13,7 +13,7 @@ spec:
   ports:
   - port: 5000
     targetPort: 5000
-    nodePort: 30005
+    nodePort: {{ .Values.registry.nodeport }}
 
 
 ---
