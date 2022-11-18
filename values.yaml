@@ -1,0 +1,6 @@
+
+registry:
+ namespace: registry
+ replicas: 1
+
+
