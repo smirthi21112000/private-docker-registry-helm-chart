@@ -4,9 +4,10 @@ registry:
  replicas: 1
  authpath: home/k8suser/docker-registry/auth
  datapath: home/k8suser/docker-registry/data
- nodeport: 30005
+ #the range of the service NodePorts is 30000-32768
+ nodeport: 30005 
  
 ui:
+ #the range of the service NodePorts is 30000-32768
  nodeport: 30006
-
 
