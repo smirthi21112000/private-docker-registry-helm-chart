@@ -58,9 +58,9 @@ spec:
       volumes:
       - name: auth
         hostPath:
-          path: /home/k8suser/smirthi/docker-registry/k8s-yaml/auth
+          path: ~/docker-registry/auth
       - name: data
         hostPath:
-          path: /home/k8suser/smirthi/docker-registry/k8s-yaml/data
+          path: ~/docker-registry/auth
 
 
