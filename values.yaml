@@ -2,5 +2,11 @@
 registry:
  namespace: registry
  replicas: 1
+ authpath: home/k8suser/docker-registry/auth
+ datapath: home/k8suser/docker-registry/data
+ nodeport: 30005
+ 
+ui:
+ nodeport: 30006
 
 
