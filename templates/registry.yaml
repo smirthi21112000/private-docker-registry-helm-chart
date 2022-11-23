@@ -35,6 +35,12 @@ spec:
       labels:
         app: registry
     spec:
+       initContainers:
+      - name: password-setup
+        image: {{ .Values.registry.password-setup-image }}
+        imagePullPolicy: IfNotPresent
+        tty: true
+        stdin: true
       containers:
       - name: registry
         image: registry:2
