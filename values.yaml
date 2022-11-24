@@ -2,12 +2,17 @@
 registry:
  namespace: registry
  replicas: 1
- authpath: home/k8suser/docker-registry/auth
- datapath: home/k8suser/docker-registry/data
+ #mention the host path where auth file is present
+ authpath: /home/k8suser/smirthi/docker-registry/auth
+ #mention the path where data related to image will be stored
+ datapath: /home/k8suser/smirthi/docker-registry/data
+ passwordImage: password:latest
+
  #the range of the service NodePorts is 30000-32768
- nodeport: 30005 
+ nodeport: 30005
  
 ui:
  #the range of the service NodePorts is 30000-32768
  nodeport: 30006
+
 
