@@ -16,7 +16,7 @@ $ helm install docker-registry .
 
 #Registry init container will be waiting for user input (username and password)
 
-$kubectl attach <pod_name> -c <container-name> -n registry -it
+$kubectl attach <pod_name> -c <container_name> -n registry -it
 
 #Give username and password. Init container execution will be completed and pod will be in running state.
 
