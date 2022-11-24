@@ -40,7 +40,7 @@ docker push 10.11.100.86:30005/my-nginx:latest
 
 #Image will be pushed successfully.
 
-#Now for testing delete the image 10.11.100.86:5000/my-nginx:latest from your local repository and tr to pull it from private docker registry by following commands
+#Now for testing delete the image 10.11.100.86:30005/my-nginx:latest from your local repository and tr to pull it from private docker registry by following commands
 
   $docker pull 10.11.100.86:30005/my-nginx:latest
 
