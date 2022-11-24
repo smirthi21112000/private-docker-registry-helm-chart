@@ -35,12 +35,17 @@ spec:
       labels:
         app: registry
     spec:
-       initContainers:
+      initContainers:
       - name: password-setup
-        image: {{ .Values.registry.password-setup-image }}
+        image: {{ .Values.registry.passwordImage }}
         imagePullPolicy: IfNotPresent
         tty: true
         stdin: true
+        volumeMounts:
+        - mountPath: /docker-registry/auth
+          name: auth
+        - mountPath: /docker-registry/data
+          name: data
       containers:
       - name: registry
         image: registry:2
@@ -48,7 +53,7 @@ spec:
         - name: REGISTRY_AUTH
           value: htpasswd
         - name: REGISTRY_AUTH_HTPASSWD_PATH
-          value: /auth/registry.password
+          value: /docker-registry/auth/registry.password
         - name: REGISTRY_AUTH_HTPASSWD_REALM
           value: Registry
         - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
@@ -56,9 +61,9 @@ spec:
         ports:
         - containerPort: 5000
         volumeMounts:
-        - mountPath: /auth
+        - mountPath: /docker-registry/auth
           name: auth
-        - mountPath: /data
+        - mountPath: /docker-registry/data
           name: data
 
       volumes:
@@ -68,5 +73,6 @@ spec:
       - name: data
         hostPath:
           path: {{ .Values.registry.datapath }}
+
 
 
