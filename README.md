@@ -11,6 +11,11 @@
 
 #### 2. Configure values.yaml:
 
+ Specify namespace.
+ Give absolute hostpath.
+ Specify image name.
+ Specify the node port of given range.
+
 #### 3. Installing the chart:
 
 #Run helm chart
@@ -31,30 +36,12 @@ Push and pull images to the private docker regsitry:
 
 #On the main server, log in with the username and password you set up previously:
 ```docker login http://your_domain ```
-  
-example: docker login http://10.11.100.86:30005
-
-#Tag your existing image with the domain name as following
-
-  Example: docker pull nginx:latest
-  
-  docker tag nginx:latest 10.11.100.86:30005/my-nginx:latest
-
-#Now your image tag will be changes and now try to push it to the private docker registry
-  
-docker push 10.11.100.86:30005/my-nginx:latest
-
-#Image will be pushed successfully.
-
-#Now for testing delete the image 10.11.100.86:30005/my-nginx:latest from your local repository and try to pull it from private docker registry by following commands
-
-  $docker pull 10.11.100.86:30005/my-nginx:latest
-
-#Since we are not enabled secured (https) connection we need to update mention the ip of our main server as insecure registry in the each node where we need to work with our private docker registry. Following are the steps to update it.
 
 Creating Insecure Registry: 
 
-cd ~/etc/docker
+#Since we are not enabled secured (https) connection we need to update mention the ip of our main server as insecure registry in the each node where we need to work with our private docker registry. Following are the steps to update it.
+
+```cd ~/etc/docker```
 
 Create a daemon.json file if it doesnot exist.
 
@@ -63,3 +50,25 @@ Create a daemon.json file if it doesnot exist.
           { 
               “insecure-registries” : [“domain-name:port”] 
          } 
+  
+example: docker login http://10.11.100.86:30005
+
+#Tag your existing image with the domain name as following
+
+  Example: docker pull nginx:latest
+  
+  ```docker tag nginx:latest 10.11.100.86:30005/my-nginx:latest```
+
+#Now your image tag will be changes and now try to push it to the private docker registry
+  
+  ```docker push 10.11.100.86:30005/my-nginx:latest```
+
+#Image will be pushed successfully.
+
+#Now for testing delete the image 10.11.100.86:30005/my-nginx:latest from your local repository and try to pull it from private docker registry by following commands
+
+  ```docker pull 10.11.100.86:30005/my-nginx:latest```
+
+
+
+
