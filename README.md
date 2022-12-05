@@ -3,11 +3,11 @@
 #### 1. Docker Image Creation:
 #build the custom docker image which will setup the password for your private registry.
 
-    ```docker build -t password .```
+```docker build -t password .```
 
 #verify the docker image
 
-    ```docker images```
+```docker images```
 
 #### 2. Configure values.yaml:
 
@@ -33,6 +33,7 @@
 #### 4. Private registry deployment validation:
 
 Push and pull images to the private docker regsitry:
+
 #Since we are not enabled secured (https) connection we need to update mention the ip of our main server as insecure registry in the each node where we need to work with our private docker registry. Following are the steps to update it.
 
 #### Creating Insecure Registry: 
