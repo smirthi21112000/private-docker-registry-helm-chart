@@ -3,11 +3,11 @@
 #### 1. Docker Image Creation:
 #build the custom docker image which will setup the password for your private registry.
 
-    ```$ docker build -t password .```
+    ```docker build -t password .```
 
 #verify the docker image
 
-    ```$docker images```
+    ```docker images```
 
 #### 2. Configure values.yaml:
 
@@ -33,13 +33,9 @@
 #### 4. Private registry deployment validation:
 
 Push and pull images to the private docker regsitry:
-
-#On the main server, log in with the username and password you set up previously:
-```docker login http://your_domain ```
-
-Creating Insecure Registry: 
-
 #Since we are not enabled secured (https) connection we need to update mention the ip of our main server as insecure registry in the each node where we need to work with our private docker registry. Following are the steps to update it.
+
+#### Creating Insecure Registry: 
 
 ```cd ~/etc/docker```
 
@@ -50,12 +46,14 @@ Create a daemon.json file if it doesnot exist.
           { 
               “insecure-registries” : [“domain-name:port”] 
          } 
-  
-example: docker login http://10.11.100.86:30005
+   
+#Login into the docker registry 
+
+example: ```docker login http://10.11.100.86:30005```
 
 #Tag your existing image with the domain name as following
 
-  Example: docker pull nginx:latest
+  Example: ```docker pull nginx:latest```
   
   ```docker tag nginx:latest 10.11.100.86:30005/my-nginx:latest```
 
