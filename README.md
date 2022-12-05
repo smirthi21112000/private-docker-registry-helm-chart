@@ -1,30 +1,36 @@
 # private-docker-registry-helm-chart
 
-Installing the chart:
-
+#### 1. Docker Image Creation:
 #build the custom docker image which will setup the password for your private registry.
 
-$ docker build -t password .
+    ```$ docker build -t password .```
 
 #verify the docker image
 
-$docker images
+    ```$docker images```
+
+#### 2. Configure values.yaml:
+
+#### 3. Installing the chart:
 
 #Run helm chart
 
-$ helm install docker-registry .
+``` $ helm install docker-registry . ```
 
 #Registry init container will be waiting for user input (username and password)
 
-$kubectl attach <pod_name> -c <container_name> -n registry -it
+``` $kubectl attach <pod_name> -c <container_name> -n registry -it ```
 
 #Give username and password. Init container execution will be completed and pod will be in running state.
+
+
+
+#### 4. Private registry deployment validation:
 
 Push and pull images to the private docker regsitry:
 
 #On the main server, log in with the username and password you set up previously:
-  
-docker login http://your_domain\
+```docker login http://your_domain ```
   
 example: docker login http://10.11.100.86:30005
 
@@ -40,7 +46,7 @@ docker push 10.11.100.86:30005/my-nginx:latest
 
 #Image will be pushed successfully.
 
-#Now for testing delete the image 10.11.100.86:30005/my-nginx:latest from your local repository and tr to pull it from private docker registry by following commands
+#Now for testing delete the image 10.11.100.86:30005/my-nginx:latest from your local repository and try to pull it from private docker registry by following commands
 
   $docker pull 10.11.100.86:30005/my-nginx:latest
 
@@ -54,6 +60,6 @@ Create a daemon.json file if it doesnot exist.
 
   Add the below content into it.
 
-        { 
+          { 
               “insecure-registries” : [“domain-name:port”] 
          } 
